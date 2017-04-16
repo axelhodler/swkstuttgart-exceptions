@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exceptions - Softwerkskammer Stuttgart April 2017</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .black-background {
+        background-color: black;
+        color: white;
+        text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+      }
+      a:visited { text-decoration: none; color: blue;}
+      .yellow-highlight {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Exceptions
+
+Softwerkskammer Stuttgart April 2017
+
+---
+
+class: center, middle
+
+![feathers on exceptions](images/feathers-exceptions.png)
+[[0]](https://twitter.com/mfeathers/status/739521637876277248)
+
+---
+
+DB write fails
+
+```java
+try {
+  store(something);
+} catch (SQLException e) {
+  e.printStackTrace();
+}
+```
+
+---
+
+class: center, middle
+
+![Java Exception Stats](images/java-exception-stats.png)
+[[1]](http://plg.uwaterloo.ca/~migod/846/current/projects/09-NakshatriHegdeThandra-report.pdf)
+
+---
+
+Third party webservice
+
+```javascript
+function get(address, onSuccess, onFailure) {
+  const request = new XMLHttpRequest()
+  request.onreadystatechange = function() {
+    if (this.readyState === 4) {
+      if (this.status === 200) {
+        onSuccess(this.responseText)
+      } else {
+        onFailure(new Error('request failed :('), this)
+      }
+    }
+  }
+  request.open('GET', address, true)
+  request.send(null)
+}
+```
+
+---
+
+Input Validation
+
+```haskell
+module Person where
+
+type Name = String
+type Age = Integer
+type ValidatePerson a = Either PersonInvalid a
+
+data Person = Person Name Age deriving Show
+
+data PersonInvalid = AgeTooLow deriving (Eq, Show)
+
+ageOkay :: Age -> Either PersonInvalid Age
+ageOkay age = if age >= 0 then Right age else Left AgeTooLow
+```
+
+[[2]](http://haskellbook.com/)
+
+---
+
+    </textarea>
+    <script src="vendor/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create({
+        slideNumberFormat: ''
+      });
+    </script>
+  </body>
+</html>
