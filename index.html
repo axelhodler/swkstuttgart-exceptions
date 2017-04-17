@@ -41,6 +41,9 @@ class: center, middle
 ![feathers on exceptions](images/feathers-exceptions.png)
 [[0]](https://twitter.com/mfeathers/status/739521637876277248)
 
+???
+
+goto statement reincarnate
 ---
 
 DB write fails
@@ -53,12 +56,20 @@ try {
 }
 ```
 
+???
+
+can one even recover from this.
+
 ---
 
 class: center, middle
 
 ![Java Exception Stats](images/java-exception-stats.png)
 [[1]](http://plg.uwaterloo.ca/~migod/846/current/projects/09-NakshatriHegdeThandra-report.pdf)
+
+???
+
+although not all of them were unaccompanied.
 
 ---
 
@@ -90,19 +101,25 @@ module Person where
 
 type Name = String
 type Age = Integer
-type ValidatePerson a = Either PersonInvalid a
+type ValidatePerson a = Either [PersonInvalid] a
 
 data Person = Person Name Age deriving Show
 
-data PersonInvalid = AgeTooLow deriving (Eq, Show)
+data PersonInvalid = NameEmpty
+                   | AgeTooLow deriving (Eq, Show)
 
-ageOkay :: Age -> Either PersonInvalid Age
-ageOkay age = if age >= 0 then Right age else Left AgeTooLow
+ageOkay :: Age -> Either [PersonInvalid] Age
+ageOkay age = if age >= 0 then Right age else Left [AgeTooLow]
+
+nameOkay :: Name -> Either [PersonInvalid] Name
+nameOkay name = if name /= "" then Right name else Left [NameEmpty]
 ```
 
 [[2]](http://haskellbook.com/)
 
----
+???
+
+with Maybe and Optional you only know something went wrong. No what went wrong.
 
     </textarea>
     <script src="vendor/remark-latest.min.js">
