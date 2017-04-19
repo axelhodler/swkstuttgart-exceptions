@@ -38,15 +38,24 @@ Softwerkskammer Stuttgart April 2017
 
 class: center, middle
 
+# Exception
+> "... an unanticipated or an exceptional occurence that may arise during the execution of a program, disrupting its normal flow" [[0]](http://plg.uwaterloo.ca/~migod/846/current/projects/09-NakshatriHegdeThandra-report.pdf)
+
+---
+
+class: center, middle
+
 ![feathers on exceptions](images/feathers-exceptions.png)
-[[0]](https://twitter.com/mfeathers/status/739521637876277248)
+[[1]](https://twitter.com/mfeathers/status/739521637876277248)
 
 ???
 
 goto statement reincarnate
 ---
 
-DB write fails
+class: middle
+
+# DB write fails
 
 ```java
 try {
@@ -65,7 +74,7 @@ can one even recover from this.
 class: center, middle
 
 ![Java Exception Stats](images/java-exception-stats.png)
-[[1]](http://plg.uwaterloo.ca/~migod/846/current/projects/09-NakshatriHegdeThandra-report.pdf)
+[[2]](http://plg.uwaterloo.ca/~migod/846/current/projects/09-NakshatriHegdeThandra-report.pdf)
 
 ???
 
@@ -73,7 +82,9 @@ although not all of them were unaccompanied.
 
 ---
 
-Third party webservice
+class: middle
+
+# Third party webservice
 
 ```javascript
 function get(address, onSuccess, onFailure) {
@@ -91,10 +102,12 @@ function get(address, onSuccess, onFailure) {
   request.send(null)
 }
 ```
-
+[[3]](http://codepen.io/SamirTalwar/pen/gwqGjQ)
 ---
 
-Input Validation
+class: middle
+
+# Input Validation
 
 ```haskell
 module Person where
@@ -115,7 +128,7 @@ nameOkay :: Name -> Either [PersonInvalid] Name
 nameOkay name = if name /= "" then Right name else Left [NameEmpty]
 ```
 
-[[2]](http://haskellbook.com/)
+[[4]](http://haskellbook.com/)
 
 ???
 
